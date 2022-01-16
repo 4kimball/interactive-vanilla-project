@@ -15,6 +15,8 @@ export class Polygon {
         ctx.beginPath();
 
         const angle = PI2 / this.sides;
+        
+        // 기준점을 지정한 증분만큼 평행이동하는 함수
         ctx.translate(this.x, this.y);
 
         for(let i=0; i< this.sides; i++) {
