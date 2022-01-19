@@ -1,44 +1,49 @@
 import { Polygon } from './polygon.js';
 
 class App {
-    constructor() {
-        this.canvas = document.createElement('canvas');
-        document.body.appendChild(this.canvas);
-        this.ctx = this.canvas.getContext('2d');
-        
-        // 디바이스의 물리적 픽셀과 뷰포트 픽셀을 맞춰주기 위해 => 출력되는 객체가 선명하게 보일 수 있도록
-        this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
-        console.log(document.body.clientWidth, this.pixelRatio);
-        window.addEventListener('resize', this.resize.bind(this), false);
-        this.resize();
+  constructor() {
+    this.canvas = document.createElement('canvas');
+    document.body.appendChild(this.canvas);
+    this.ctx = this.canvas.getContext('2d');
 
-        window.requestAnimationFrame(this.animate.bind(this));
-    }
+    // 디바이스의 물리적 픽셀과 뷰포트 픽셀을 맞춰주기 위해 => 출력되는 객체가 선명하게 보일 수 있도록
+    this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
 
-    resize() {
-        // padding 포함한 컨텐츠의 크기
-        this.stageWidth = document.body.clientWidth;
-        this.stageHeight = document.body.clientHeight;
+    window.addEventListener('resize', this.resize.bind(this), false);
+    this.resize();
 
-        // DPR에 따라 canvas 크기 정하기
-        this.canvas.width = this.stageWidth * this.pixelRatio;
-        this.canvas.height = this.stageHeight * this.pixelRatio;
-        
-        // context의 x축, y축 크기조정
-        this.ctx.scale(this.pixelRatio, this.pixelRatio);
+    window.requestAnimationFrame(this.animate.bind(this));
+  }
 
-        this.polygon = new Polygon(this.stageWidth / 2, this.stageHeight / 2, this.stageHeight / 3, 3);
-    }
+  resize() {
+    // padding 포함한 컨텐츠의 크기
+    this.stageWidth = document.body.clientWidth;
+    this.stageHeight = document.body.clientHeight;
 
-    animate() {
-        window.requestAnimationFrame(this.animate.bind(this));
+    // DPR에 따라 canvas 크기 정하기
+    this.canvas.width = this.stageWidth * this.pixelRatio;
+    this.canvas.height = this.stageHeight * this.pixelRatio;
 
-        this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
+    // context의 x축, y축 크기조정
+    this.ctx.scale(this.pixelRatio, this.pixelRatio);
 
-        this.polygon.animate(this.ctx);
-    }
+    this.polygon = new Polygon(
+      this.stageWidth / 2,
+      this.stageHeight / 2,
+      this.stageHeight / 3,
+      3
+    );
+  }
+
+  animate() {
+    window.requestAnimationFrame(this.animate.bind(this));
+
+    this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
+
+    this.polygon.animate(this.ctx);
+  }
 }
 
 window.onload = () => {
-    new App();
-}
+  new App();
+};
