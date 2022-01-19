@@ -9,7 +9,7 @@ export class Polygon {
     this.rotate = 0;
   }
 
-  animate(ctx) {
+  animate(ctx, moveX) {
     ctx.save();
     ctx.fillStyle = '#000';
     ctx.beginPath();
@@ -19,6 +19,9 @@ export class Polygon {
     // 기준점을 지정한 증분만큼 평행이동하는 함수
     // 중심으로 이동
     ctx.translate(this.x, this.y);
+
+    this.rotate -= moveX * 0.008;
+    ctx.rotate(this.rotate);
 
     // 도형의 꼭지점 좌표를 구하여 그린다.
     for (let i = 0; i < this.sides; i++) {
