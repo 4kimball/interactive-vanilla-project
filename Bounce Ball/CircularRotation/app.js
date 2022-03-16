@@ -7,11 +7,10 @@ class App {
     document.body.appendChild(this.canvas);
 
     this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
-
     window.addEventListener('resize', this.resize.bind(this), false);
     this.resize();
 
-    this.ball = new Ball(150, this.stageWidth, this.stageHeight, 200);
+    this.ball = new Ball(70, 50, 300, this.stageWidth, this.stageHeight);
     window.requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -25,7 +24,7 @@ class App {
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
   }
 
-  animate(t) {
+  animate() {
     window.requestAnimationFrame(this.animate.bind(this));
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
     this.ball.draw(this.ctx);
