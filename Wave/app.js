@@ -9,7 +9,7 @@ class App {
 
     this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
 
-    this.wave = new Wave(6, "red");
+    this.wave = new Wave(6, "#6699ff");
     window.addEventListener("resize", this.resize.bind(this), false);
     this.resize();
 
@@ -32,7 +32,8 @@ class App {
   animate(t) {
     window.requestAnimationFrame(this.animate.bind(this));
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
-    this.wave.drawArc(this.ctx);
+    this.wave.draw(this.ctx);
+    //this.wave.drawArc(this.ctx);
   }
 }
 

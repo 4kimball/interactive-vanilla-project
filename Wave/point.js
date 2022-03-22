@@ -4,7 +4,7 @@ class Point {
     this.y = y;
     this.fixedY = y;
     this.cur = index;
-    this.speed = 0.1;
+    this.speed = 0.07;
     this.max = Math.random() * 100 + 150;
   }
 
